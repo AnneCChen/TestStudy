@@ -1,0 +1,55 @@
+add:
+  P0:
+    datas:
+      - [ 1,1,2 ]
+      - [ -0.01,0.02,0.01 ]
+      - [ 10,0.02,10.02 ]
+    ids:
+      - 2 int
+      - 2 float
+      - int + float
+  P1_1:
+    datas:
+      - [ 98.99,99,197.99 ]
+      - [ 99,98.99,197.99 ]
+      - [ -98.99,-99,-197.99 ]
+      - [ -99,-98.99,-197.99 ]
+      - [ 99.01,0,"Parameter size exceeds the range." ]
+      - [ -99.01,-1,"Parameter size exceeds the range." ]
+      - [ 2,99.01,"Parameter size exceeds the range." ]
+      - [ 1,-99.01,"Parameter size exceeds the range." ]
+    ids:
+      - Adding valid boundary values.【98.99,99】
+      - Adding valid boundary values.【99,98.99】
+      - Adding valid boundary values.【-98.99,-99】
+      - Adding valid boundary values.【-99,-98.99】
+      - Adding invalid boundary values.【99.01,0】
+      - Adding invalid boundary values.【-99.01,-1】
+      - Adding invalid boundary values.【2,99.01】
+      - Adding invalid boundary values.【1,-99.01】
+  P1_2:
+    datas:
+      - [ 文,9.3,TypeError ]
+      - [ 4,字,TypeError ]
+      - [ nu,0.2,"TypeError" ]
+      - [ 30,t,"TypeError" ]
+      - [ "*&",0.2,"TypeError" ]
+      - [ 21.45,"@","TypeError" ]
+    ids:
+      - 1st value Chinese
+      - 2nd value Chinese
+      - 1st value English
+      - 2nd value English
+      - 1st value is a special character.*&
+      - 2nd value is a special character@
+  P2:
+    datas:
+      - [ None,20.93,TypeError ]
+      - [ -3,None,TypeError ]
+      - [ " ",3.14,"TypeError" ]
+      - [ -90," ","TypeError" ]
+    ids:
+      - 1st value is None
+      - 2nd value is None
+      - 1st value is space
+      - 2nd value is space
