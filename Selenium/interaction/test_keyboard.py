@@ -1,14 +1,21 @@
+import time
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class TestKeyboard:
+
     def setup_class(self):
         self.driver = webdriver.Chrome()
-        self.driver.implicitly.wait(3)
+        # 
+        self.driver.implicitly_wait(3)
 
+    def __init__(self):
+        self.setup_class()
     def teardown_class(self):
         self.driver.quit()
 
@@ -19,6 +26,22 @@ class TestKeyboard:
         3. input search content, at the same time, press 'shift'
         """
         self.driver.get("https://ceshiren.com/")
-        self.driver.find_element(By.id, "search-button").click()
-        ele = self.driver.find_elements(By.id, "search-term").send_keys("selenium")
-        ActionChains(self.driver).key_down(Keys.SHIFT, ele)
+        self.driver.find_element(By.ID, "search-button").click()
+        ele = self.driver.find_element(By.ID, "search-term")
+        ActionChains(self.driver).key_down(Keys.SHIFT, ele).send_keys("selenium").perform()
+        time.sleep(300)
+        
+# t1= TestKeyboard()
+# t1.test_shift()
+
+    def test_enter_by_sendkeys(self):
+        self.driver.get("https://www.google.com/")
+        self.driver.find_element(By.ID,"APjFqb").send_keys("selenium")
+        # 1st way
+        # self.driver.find_element(By.ID,"APjFqb").send_keys(Keys.ENTER)
+        # 2nd
+        ActionChains(self.driver).key_down(Keys.ENTER).perform()
+        time.sleep(300)
+
+t1 = TestKeyboard()
+t1.test_enter_by_sendkeys()
