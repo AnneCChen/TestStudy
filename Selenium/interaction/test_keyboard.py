@@ -1,3 +1,4 @@
+import sys
 import time
 from selenium import webdriver
 from selenium.webdriver import ActionChains
@@ -43,5 +44,16 @@ class TestKeyboard:
         ActionChains(self.driver).key_down(Keys.ENTER).perform()
         time.sleep(300)
 
+# t1 = TestKeyboard()
+# t1.test_enter_by_sendkeys()
+
+
+    def test_copy_and_paste(self):
+        self.driver.get("https://www.google.com/")
+        self.driver.find_element(By.ID,"APjFqb").send_keys("selenium")
+        command_control = Keys.COMMAND if sys.platform == 'darwin' else Keys.CONTROL 
+        ActionChains(self.driver).key_down(Keys.SHIFT,ele).send_keys("Selenium!").key_down(Keys.ARROW_LEFT).key_down(command_control).send_keys("xvv").key_up(command_control).perform()
+        time.sleep(300)
+
 t1 = TestKeyboard()
-t1.test_enter_by_sendkeys()
+t1.test_copy_and_paste()
